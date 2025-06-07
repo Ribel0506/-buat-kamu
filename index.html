@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Romantis dengan Musik</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>❤️ Untuk Kamu ❤️</h2>
+
+    <div id="text" class="typing-text"></div>
+
+    <button id="nextBtn">Lanjut</button>
+
+    <div id="player"></div>
+  </div>
+
+  <script>
+    // YouTube API setup
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '1',
+        width: '1',
+        videoId: 'EBHOXV1ihus',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          showinfo: 0,
+          iv_load_policy: 3,
+          disablekb: 1
+        },
+        events: {
+          onReady: onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Player siap, tidak autoplay dulu
+    }
+
+    // Load YouTube IFrame API script async
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    const slides = [
+      "Hai, aku cuma mau bilang sesuatu... 💌",
+      "Semangat ya buat Kamu yang kuliahnya 😊",
+      "Semangat juga Buat Meraih cita-cita 💖",
+      "Jangan pernah bergadang,makan juga harus teraturS 🌹",
+      "Jaga Kesehatan jangan terlalu fokus kuliah 🤗",
+      "Semoga diperkuliahan lu aktif 😢",
+      "Aku yakin, Lu orangnya Hebat, ceria, aktif, dan pintar 💪❤️",
+      "Terimakah sudah mau kenalan sama aku 🥰",
+      "Maaf juga terkadang kalau aku cuek",
+      "Terima kasih dan mohon maaf 💖"
+    ];
+
+    const textElement = document.getElementById("text");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let slideIndex = 0;
+    let typingInterval;
+    let charIndex = 0;
+
+    function typeText(text, callback) {
+      textElement.textContent = "";
+      charIndex = 0;
+      clearInterval(typingInterval);
+
+      typingInterval = setInterval(() => {
+        if (charIndex < text.length) {
+          textElement.textContent += text.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(typingInterval);
+          if (callback) callback();
+        }
+      }, 45);
+    }
+
+    function showSlide(index) {
+      if (index < slides.length) {
+        typeText(slides[index]);
+        nextBtn.textContent = index === slides.length - 1 ? "Selesai" : "Lanjut";
+
+        // Mulai play musik saat slide pertama (index 0) jika player siap
+        if (index === 0 && player && player.playVideo) {
+          player.playVideo();
+        }
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      slideIndex++;
+      if (slideIndex >= slides.length) {
+        nextBtn.disabled = true;
+        textElement.textContent = "Terima kasih sudah membaca. ❤️";
+
+        // Stop musik saat selesai
+        if (player && player.stopVideo) player.stopVideo();
+        return;
+      }
+      showSlide(slideIndex);
+    });
+
+    // Opening singkat sebelum slide pertama
+    textElement.textContent = "Cinta itu sederhana...";
+
+    // Awal tampilkan slide pertama setelah delay 1 detik
+    setTimeout(() => {
+      showSlide(slideIndex);
+    }, 1000);
+  </script>
+</body>
+</html>
