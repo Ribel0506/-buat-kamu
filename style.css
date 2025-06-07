@@ -1,0 +1,78 @@
+/* style.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('https://img.lovepik.com/background/20211029/medium/lovepik-love-in-romantic-214-valentines-day-hd-background-image_605813442.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.5); /* semi-transparan hitam */
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 90%;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #ffccd5;
+}
+
+.typing-text {
+  font-size: 1.2em;
+  min-height: 80px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+button#nextBtn {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 25px;
+  background-color: #ff85a2;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#nextBtn:hover {
+  background-color: #ff4f7d;
+}
+
+#player {
+  display: none;
+}
+
+/* Responsif untuk layar kecil */
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .typing-text {
+    font-size: 1em;
+  }
+
+  button#nextBtn {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
